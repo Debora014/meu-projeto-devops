@@ -1,0 +1,22 @@
+name: CI-CD-Fluxo
+
+on:
+  push:
+    branches: [ "main", "desenvolvimento" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Executando Build
+        run: echo "Fazendo o build do projeto..."
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executando Deploy
+        run: echo "Fazendo o deploy para producao..."
