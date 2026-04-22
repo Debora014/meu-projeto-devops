@@ -28,3 +28,4 @@ jobs:
           -X POST \
           -d "{\"content\": \"🚀 Pipeline executado no GitHub com status: ${{ job.status }}\"}" \
           ${{ secrets.DISCORD_WEBHOOK }}
+
