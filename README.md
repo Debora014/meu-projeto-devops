@@ -8,5 +8,3 @@ Commit 5
 git add .
 git commit -m "test: alerta discord"
 git push
-
-
