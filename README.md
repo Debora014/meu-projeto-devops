@@ -8,3 +8,8 @@ Commit 5
 git add .
 git commit -m "test: alerta discord"
 git push
+
+git checkout -b teste-unitario
+git add .
+git commit -m "feat: testes unitarios"
+git push origin teste-unitario
