@@ -11,8 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Executando Build
-        run: echo "Fazendo o build do projeto..."
+
+      - name: Usar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar testes
+        run: npm test -- --watchAll=false
 
   deploy:
     needs: build
@@ -26,6 +35,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
           -X POST \
-          -d "{\"content\": \"🚀 Pipeline executado no GitHub com status: ${{ job.status }}\"}" \
+          -d "{\"content\": \"🚀 Pipeline executado com status: ${{ job.status }}\"}" \
           ${{ secrets.DISCORD_WEBHOOK }}
-
