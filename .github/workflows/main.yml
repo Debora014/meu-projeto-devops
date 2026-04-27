@@ -9,17 +9,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # Define que todos os passos abaixo devem rodar dentro da sua pasta de projeto
     defaults:
       run:
-        working-directory: "PROJETO DEVOPS" 
+        working-directory: "Projeto DevOps"
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-      - name: Usar Node
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'Projeto DevOps/package-lock.json'
 
       - name: Instalar dependências
         run: npm install
