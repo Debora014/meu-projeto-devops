@@ -9,6 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Adicionamos isso para que todos os comandos 'run' rodem dentro da pasta correta
+    defaults:
+      run:
+        working-directory: "./PROJETO DEVOPS"
+
     steps:
       - uses: actions/checkout@v4
 
