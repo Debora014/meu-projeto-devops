@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    # Define que todos os passos abaixo devem rodar dentro da sua pasta de projeto
-    defaults:
-      run:
-        working-directory: "Projeto DevOps"
-
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -23,8 +18,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: 'Projeto DevOps/package-lock.json'
 
       - name: Instalar dependências
         run: npm install
@@ -38,11 +31,3 @@ jobs:
     steps:
       - name: Executando Deploy
         run: echo "Fazendo o deploy para producao..."
-
-      - name: Enviar alerta para Discord
-        if: always()
-        run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-          -d "{\"content\": \"🚀 Pipeline executado com status: ${{ job.status }}\"}" \
-          ${{ secrets.DISCORD_WEBHOOK }}
